@@ -23,10 +23,16 @@ from pathlib import Path
 # leaf, and its keeper tells guests this windowsill has a favourite.
 # ASCII-only keeps the character count and the byte count identical, so
 # the 120-character gate holds either way.
-FORTUNE = (
-    "Soon the morning sun will find your tallest leaf, "
+# The fortune is built from two clauses so each half can be read and
+# checked on its own: the sun finds the tallest leaf, then the keeper
+# brags about the windowsill's favourite. Joining with "+" keeps the
+# single space between the clauses exactly where the original had it,
+# so the composed line stays byte-identical to the first version.
+_FORTUNE_OPENING = "Soon the morning sun will find your tallest leaf, "
+_FORTUNE_CLOSING = (
     "and your keeper will tell guests this windowsill has a favourite."
 )
+FORTUNE = _FORTUNE_OPENING + _FORTUNE_CLOSING
 
 OUTPUT_DIR = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
 OUTPUT_NAME = "entry.txt"
